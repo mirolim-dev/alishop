@@ -1,0 +1,56 @@
+{% extends "index/base.html" %}
+{% load static %}
+{% block main %}
+<body>
+
+<!-- REMOVE FOLLOWING LINK -->
+<a href="http://bootstrap-ecommerce.com/page-themes.html" class="btn btn-dark rounded-pill" style="font-size:13px; z-index:100; position: fixed; bottom:10px; right:10px;">Download theme</a>
+<!-- REMOVE  //END -->
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+<div class="container">
+
+<div class="row">
+	{% include 'profile/links.html' %} 
+	<main class="col-md-9">
+		<article class="card mb-3">
+			<div class="card-body">
+				{% csrf_token %}  
+				<figure class="icontext">
+					<div class="col-md">
+						<img class="img-md rounded-circle border profile-image" src="{{client.image.url}}">
+					</div>
+						<div class="text">
+							<h4 type="title" name="first_name" class="form-control" value="{{user.first_name}}{{user.last_name}}"> {{user.first_name}} {{user.last_name}} </h4> 
+							<h4 type="title" name="email" class="form-control" value="{{user.email}}"> {{user.email}} </h4> 
+							<a href="{% url 'settings-view' %}" class="btn btn-light btn-sm" >Edit</a>
+						</div>
+				</figure>
+				<hr>
+				<p>
+					{% for adress in my_adresses %}
+					<i class="fa fa-map-marker text-muted"></i> &nbsp; My address:  
+					 <br>
+					 <span>Country: </span><a>{{adress.country}}</a><br>
+					 <span>City: </span><a>{{adress.city}}</a><br>
+					 <span>Building: </span><a>{{adress.building}}</a><br>
+					 <span>Floor: </span><a>{{adress.floor}}</a><br>
+					 <span>Appartment: </span><a>{{adress.appertment}}</a><br>
+					 <span>Postal code: </span><a>{{adress.pochta_code}}</a><br>
+
+					{% endfor %}
+				</p>
+
+				
+
+	</main> <!-- col.// -->
+</div>
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+</body>
+{% endblock main %}
